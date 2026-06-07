@@ -1,0 +1,44 @@
+<%- include("partials/header") %>
+
+<h2>Create Account</h2>
+
+<form action="/register" method="POST" class="form">
+
+    <input
+        type="text"
+        name="username"
+        placeholder="Enter Username"
+        required
+    >
+
+    <input
+        type="email"
+        name="email"
+        placeholder="Enter Email"
+        required
+    >
+
+    <input
+        type="password"
+        name="password"
+        placeholder="Enter Password"
+        required
+    >
+
+    <button type="submit">
+        Register
+    </button>
+
+</form>
+
+<p style="text-align:center; margin-top:20px;">
+
+    Already have an account?
+
+    <a href="/login">
+        Login
+    </a>
+
+</p>
+
+<%- include("partials/footer") %>

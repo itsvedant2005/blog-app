@@ -1,0 +1,174 @@
+<%- include("partials/header") %>
+
+<div class="blog-container">
+
+    <span class="category-badge">
+        <%= post.category %>
+    </span>
+
+    <h1 class="post-title">
+        <%= post.title %>
+    </h1>
+
+    <div class="post-meta">
+
+        ✍️ <%= post.author %>
+
+        •
+
+        📅
+        <%= new Date(post.createdAt).toLocaleDateString() %>
+
+    </div>
+
+    <% if(post.featuredImage){ %>
+
+        <img
+            src="/uploads/<%= post.featuredImage %>"
+            class="featured-image"
+        >
+
+    <% } %>
+
+    <h2>Introduction</h2>
+
+    <p><%= post.introduction %></p>
+
+    <h2><%= post.section1Title %></h2>
+
+    <% if(post.section1Image){ %>
+
+        <img
+            src="/uploads/<%= post.section1Image %>"
+            class="section-image"
+        >
+
+    <% } %>
+
+    <p><%= post.section1Content %></p>
+
+    <h2><%= post.section2Title %></h2>
+
+    <% if(post.section2Image){ %>
+
+        <img
+            src="/uploads/<%= post.section2Image %>"
+            class="section-image"
+        >
+
+    <% } %>
+
+    <p><%= post.section2Content %></p>
+
+    <h2><%= post.section3Title %></h2>
+
+    <% if(post.section3Image){ %>
+
+        <img
+            src="/uploads/<%= post.section3Image %>"
+            class="section-image"
+        >
+
+    <% } %>
+
+    <p><%= post.section3Content %></p>
+
+    <h2>Conclusion</h2>
+
+    <p><%= post.conclusion %></p>
+
+</div>
+
+    </article>
+
+    <div class="blog-actions">
+
+    <form
+        action="/like/<%= post._id %>"
+        method="POST"
+    >
+
+        <button class="like-btn">
+
+            ❤️ Like (<%= post.likes %>)
+
+        </button>
+
+    </form>
+
+</div>
+
+<div class="comments-section">
+
+    <h2>Comments</h2>
+
+    <% if(post.comments.length > 0){ %>
+
+        <% post.comments.forEach(comment => { %>
+
+            <div class="comment-card">
+
+                <h4>
+
+                    <%= comment.username %>
+
+                </h4>
+
+                <p>
+
+                    <%= comment.text %>
+
+                </p>
+
+            </div>
+
+        <% }) %>
+
+    <% } else { %>
+
+        <p>No comments yet.</p>
+
+    <% } %>
+
+</div>
+
+<form
+    action="/comment/<%= post._id %>"
+    method="POST"
+    class="comment-form"
+>
+
+    <input
+        type="text"
+        name="username"
+        placeholder="Your Name"
+        required
+    >
+
+    <textarea
+        name="text"
+        placeholder="Write your comment..."
+        required
+    ></textarea>
+
+    <button type="submit">
+
+        Post Comment
+
+    </button>
+
+</form>
+
+    <!-- BACK BUTTON -->
+
+    <div class="back-section">
+
+        <a href="/" class="back-btn">
+            ← Back to Blogs
+        </a>
+
+    </div>
+
+</div>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,108 @@
+<%- include("partials/header") %>
+
+<h2>Create Blog Post</h2>
+
+<form action="/posts" method="POST" enctype="multipart/form-data" class="form">
+
+    <input
+        type="text"
+        name="title"
+        placeholder="Enter Blog Title"
+        required
+    >
+
+    <input
+        type="text"
+        name="author"
+        placeholder="Enter Author Name"
+        required
+    >
+
+    <select name="category" required>
+        <option value="">Select Category</option>
+        <option>Technology</option>
+        <option>Programming</option>
+        <option>Travel</option>
+        <option>Sports</option>
+        <option>Education</option>
+        <option>Lifestyle</option>
+    </select>
+
+    <label>Upload Blog Image</label>
+
+   <label>Featured Image</label>
+
+<input
+    type="file"
+    name="featuredImage"
+>
+
+<label>Introduction</label>
+
+<textarea
+    name="introduction"
+    placeholder="Write Introduction"
+></textarea>
+
+<input
+    type="text"
+    name="section1Title"
+    placeholder="Section 1 Title"
+>
+
+<textarea
+    name="section1Content"
+    placeholder="Section 1 Content"
+></textarea>
+
+<input
+    type="file"
+    name="section1Image"
+>
+
+<input
+    type="text"
+    name="section2Title"
+    placeholder="Section 2 Title"
+>
+
+<textarea
+    name="section2Content"
+    placeholder="Section 2 Content"
+></textarea>
+
+<input
+    type="file"
+    name="section2Image"
+>
+
+<input
+    type="text"
+    name="section3Title"
+    placeholder="Section 3 Title"
+>
+
+<textarea
+    name="section3Content"
+    placeholder="Section 3 Content"
+></textarea>
+
+<input
+    type="file"
+    name="section3Image"
+>
+
+<label>Conclusion</label>
+
+<textarea
+    name="conclusion"
+    placeholder="Write Conclusion"
+></textarea>
+
+    <button type="submit">
+        Publish Blog
+    </button>
+
+</form>
+
+<%- include("partials/footer") %>

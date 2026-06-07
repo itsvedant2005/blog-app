@@ -1,0 +1,101 @@
+<%- include("partials/header") %>
+
+<div class="card">
+
+    <h1>
+        <%= post.title %>
+    </h1>
+
+    <h3>
+        By <%= post.author || "Admin" %>
+    </h3>
+
+    <small>
+        <%= new Date(post.createdAt).toLocaleDateString() %>
+    </small>
+
+    <p>
+        Category:
+        <%= post.category %>
+    </p>
+
+    <% if(post.image){ %>
+
+        <img
+            src="/uploads/<%= post.image %>"
+            class="blog-image"
+        >
+
+    <% } %>
+
+    <div class="content">
+
+        <p>
+            <%= post.content %>
+        </p>
+
+    </div>
+
+    <!-- LIKE -->
+
+    <form action="/like/<%= post._id %>" method="POST">
+
+        <button class="like-btn">
+
+            ❤️ <%= post.likes || 0 %>
+
+        </button>
+
+    </form>
+
+    <!-- COMMENTS -->
+
+    <h3>Comments</h3>
+
+    <% if(post.comments.length > 0){ %>
+
+        <% post.comments.forEach(comment => { %>
+
+            <p>
+
+                <strong><%= comment.username %></strong>
+
+                : <%= comment.text %>
+
+            </p>
+
+        <% }) %>
+
+    <% } else { %>
+
+        <p>No comments yet.</p>
+
+    <% } %>
+
+    <form action="/comment/<%= post._id %>" method="POST">
+
+        <input
+            type="text"
+            name="username"
+            placeholder="Your Name"
+            required
+        >
+
+        <input
+            type="text"
+            name="text"
+            placeholder="Write a comment..."
+            required
+        >
+
+        <button>
+
+            Add Comment
+
+        </button>
+
+    </form>
+
+</div>
+
+<%- include("partials/footer") %>
