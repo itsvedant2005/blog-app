@@ -16,28 +16,32 @@ const Post = require("./models/Post");
 const app = express();
 const PORT = process.env.PORT || 5000;
 //Image
-const fs = require("fs");
-
-if (!fs.existsSync("uploads")) {
-    fs.mkdirSync("uploads", { recursive: true });
-}
 const multer = require("multer");
 
-const storage = multer.diskStorage({
+const cloudinary = require("cloudinary").v2;
 
-    destination:function(req,file,cb){
-        cb(null,"uploads/");
-    },
+const {
+  CloudinaryStorage
+} = require("multer-storage-cloudinary");
 
-    filename:function(req,file,cb){
-        cb(null, Date.now() + "-" + file.originalname);
-    }
-
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-const upload = multer({
-    storage
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "blog-images"
+  }
 });
+
+const upload = multer({ storage });
+
+// const upload = multer({
+//     storage
+// });
 
 /* ---------------- MONGODB CONNECTION ---------------- */
 
@@ -311,7 +315,7 @@ app.post(
                 category: req.body.category,
 
                 featuredImage:
-                    req.files.featuredImage?.[0]?.filename,
+                    req.files.featuredImage?.[0]?.path,
 
                 introduction:
                     req.body.introduction,
@@ -323,7 +327,7 @@ app.post(
                     req.body.section1Content,
 
                 section1Image:
-                    req.files.section1Image?.[0]?.filename,
+                    req.files.section1Image?.[0]?.path,
 
                 section2Title:
                     req.body.section2Title,
@@ -332,7 +336,7 @@ app.post(
                     req.body.section2Content,
 
                 section2Image:
-                    req.files.section2Image?.[0]?.filename,
+                    req.files.section2Image?.[0]?.path,
 
                 section3Title:
                     req.body.section3Title,
@@ -341,7 +345,7 @@ app.post(
                     req.body.section3Content,
 
                 section3Image:
-                    req.files.section3Image?.[0]?.filename,
+                    req.files.section3Image?.[0]?.path,
 
                 conclusion:
                     req.body.conclusion
@@ -441,4 +445,4 @@ app.get("/category/:name", async(req,res)=>{
 });
 
 /* ----------------Uploads---------------- */
-app.use("/uploads", express.static("uploads"));
+// app.use("/uploads", express.static("uploads"));
