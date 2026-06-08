@@ -7,6 +7,42 @@
     --text:#374151;
 }
 
+.featured-image {
+    width: 100%;
+    max-width: 1000px;
+    height: 450px;
+    object-fit: cover;
+    display: block;
+    margin: 30px auto;
+    border-radius: 12px;
+}
+
+.section-image {
+    width: 100%;
+    max-width: 800px;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+
+    .featured-image {
+        height: 250px;
+    }
+
+    .section-image {
+        height: 220px;
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+
+}
+
 .blog-container{
     max-width:900px;
     margin:auto;

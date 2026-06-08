@@ -23,10 +23,11 @@
 
     <% if(post.featuredImage){ %>
 
-        <img
-            <img src="<%= post.featuredImage %>">
-            class="featured-image"
-        >
+       <img
+    src="<%= post.featuredImage %>"
+    alt="<%= post.title %>"
+    class="featured-image"
+>
 
     <% } %>
 
@@ -38,10 +39,11 @@
 
     <% if(post.section1Image){ %>
 
-        <img
-            <img src="<%= post.featuredImage %>">
-            class="section-image"
-        >
+       <img
+    src="<%= post.section1Image %>"
+    alt="<%= post.section1Title %>"
+    class="section-image"
+>
 
     <% } %>
 
@@ -52,7 +54,8 @@
     <% if(post.section2Image){ %>
 
         <img
-            <img src="<%= post.featuredImage %>">
+            src="<%= post.section2Image %>"
+            alt="<%= post.section2Title %>"
             class="section-image"
         >
 
@@ -64,10 +67,11 @@
 
     <% if(post.section3Image){ %>
 
-        <img
-            <img src="<%= post.section3Image %>">
-            class="section-image"
-        >
+       <img
+    src="<%= post.section3Image %>"
+    alt="<%= post.section3Title %>"
+    class="section-image"
+>
 
     <% } %>
 
