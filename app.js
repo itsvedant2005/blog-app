@@ -16,6 +16,11 @@ const Post = require("./models/Post");
 const app = express();
 const PORT = process.env.PORT || 5000;
 //Image
+const fs = require("fs");
+
+if (!fs.existsSync("uploads")) {
+    fs.mkdirSync("uploads", { recursive: true });
+}
 const multer = require("multer");
 
 const storage = multer.diskStorage({
